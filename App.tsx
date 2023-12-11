@@ -1,13 +1,22 @@
 import React from 'react';
 import {View, StatusBar, StyleSheet} from 'react-native';
 import Navigator from './src/navigation/Navigator';
+import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#3498db', // Set your primary color
+    accent: '#f1c40f', // Set your accent color
+  },
+};
 
 const App = () => {
   return (
-    <View style={style.container}>
-      <StatusBar barStyle="light-content" />
+    <PaperProvider theme={theme}>
       <Navigator />
-    </View>
+    </PaperProvider>
   );
 };
 
