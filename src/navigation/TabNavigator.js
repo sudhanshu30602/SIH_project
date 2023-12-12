@@ -4,7 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import DashbordScreen from '../screens/DashbordScreen';
 import ChatScreen from '../screens/ChatScreen';
-import AccountScreen from '../screens/AccountScreen';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import ProfileScreen from '../screens/ProfileScreen';
+import VideoScreen from '../screens/VideoScreen';
+
 
 
 
@@ -35,10 +38,51 @@ const HomeScreen = ({ navigation }) => {
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator  screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="DashbordScreen" component={DashbordScreen} />
-      <Tab.Screen name="ChatScreen" component={ChatScreen} />
-      <Tab.Screen name="AccountScreen" component={AccountScreen} />
+    <Tab.Navigator  screenOptions={{ headerShown: false }} 
+    tabBarOptions={{
+      activeTintColor: 'lightgreen', // Custom active color
+      inactiveTintColor: '#bdc3c7', // Custom inactive color
+      style: {
+        backgroundColor: '#ffffff', // Custom background color
+      },
+    }}
+  >
+      <Tab.Screen name="DashbordScreen" 
+      component={DashbordScreen}
+      options={{
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="home" color={color} size={30} /> // Custom size
+        ),
+      }}
+      />
+      <Tab.Screen name="ChatScreen" 
+      component={ChatScreen}
+      options={{
+        tabBarLabel: 'Chat',
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="chatbubble-ellipses-sharp" color={color} size={30} /> // Custom size
+        ),
+      }}
+      />
+      <Tab.Screen name="VideoScreen" 
+      component={VideoScreen}
+      options={{
+        tabBarLabel: 'VideoScreen',
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="person" color={color} size={30} /> // Custom size
+        ),
+      }}
+      />
+        <Tab.Screen name="ProfileScreen" 
+      component={ProfileScreen}
+      options={{
+        tabBarLabel: 'Profile',
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="person" color={color} size={30} /> // Custom size
+        ),
+      }}
+      />
     </Tab.Navigator>
   );
 };
