@@ -9,4 +9,4 @@ export default function HistoryScreen() {
   )
 }
 
-//const styles = StyleSheet.create({})
+const styles = StyleSheet.create({})
