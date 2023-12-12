@@ -6,7 +6,6 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import OutlinedTextInput from '../components/OutlinedTextInput';
 import ButtonComponent from '../components/BottonComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const SingupScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -24,7 +23,7 @@ const SingupScreen = ({navigation}) => {
   };
 
   const handleConfirm = (selectedDate) => {
-   // hideDatePicker();
+    hideDatePicker();
     const formattedDate = selectedDate.toISOString().split('T')[0];
     setDateOfBirth(formattedDate);
   };
@@ -60,9 +59,9 @@ const SingupScreen = ({navigation}) => {
       />
 
         <View style={styles.datePickerContainer}>
-          <TouchableOpacity style={styles.StyleIcon} onPress={showDatePicker}>
+          <View style={styles.StyleIcon}>
           <Icon name="calendar" size={30} color="black" />
-          </TouchableOpacity>
+          </View>
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode="date"
