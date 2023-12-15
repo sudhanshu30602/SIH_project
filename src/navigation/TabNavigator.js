@@ -35,10 +35,54 @@ const HomeScreen = ({ navigation }) => {
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator  screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="DashbordScreen" component={DashbordScreen} />
-      <Tab.Screen name="ChatScreen" component={ChatScreen} />
-      <Tab.Screen name="AccountScreen" component={AccountScreen} />
+    <Tab.Navigator  screenOptions={{ headerShown: false }} 
+    tabBarOptions={{
+      activeTintColor: 'lightgreen', // Custom active color
+      inactiveTintColor: '#bdc3c7', // Custom inactive color
+      style: {
+        backgroundColor: '#ffffff', // Custom background color
+      },
+      tabBarStyle: {
+        display: 'flex',
+      },
+    }}
+  >
+      <Tab.Screen name="DashbordScreen" 
+      component={DashbordScreen}
+      options={{
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="home" color={color} size={30} /> // Custom size
+        ),
+      }}
+      />
+      <Tab.Screen name="ChatScreen" 
+      component={ChatScreen}
+      options={{
+        tabBarLabel: 'Chat',
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="chatbubble-ellipses-sharp" color={color} size={30} /> // Custom size
+        ),
+      }}
+      />
+      <Tab.Screen name="VideoScreen" 
+      component={VideoScreen}
+      options={{
+        tabBarLabel: 'VideoScreen',
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="person" color={color} size={30} /> // Custom size
+        ),
+      }}
+      />
+        <Tab.Screen name="ProfileScreen" 
+      component={ProfileScreen}
+      options={{
+        tabBarLabel: 'Profile',
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="person" color={color} size={30} /> // Custom size
+        ),
+      }}
+      />
     </Tab.Navigator>
   );
 };
