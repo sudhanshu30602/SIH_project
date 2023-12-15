@@ -45,6 +45,9 @@ const TabNavigator = () => {
       style: {
         backgroundColor: '#ffffff', // Custom background color
       },
+      tabBarStyle: {
+        display: 'flex',
+      },
     }}
   >
       <Tab.Screen name="DashbordScreen" 

@@ -1,9 +1,11 @@
 // VideoListScreen.js
-import React from 'react';
-import { FlatList, View, StyleSheet } from 'react-native';
+import React,{useEffect, useState} from 'react';
+import { FlatList, View, StyleSheet, TouchableOpacity,Text, Image } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 
 const VideoScreen = () => {
+
+  const [vdata, setVData] = useState("");
   const videoData = [
     {
       id: '1',
@@ -27,22 +29,37 @@ const VideoScreen = () => {
       },
     // Add more video data as needed
   ];
+          useEffect(() => {
+            //Runs only on the first render
+            fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=150&q=ayurvedic%20treatment&type=video&type=audio&key=AIzaSyA6Tor0745AOuToOO_3Q65bggCsFJD2i64`)
+            .then(res=>res.json())
+            .then(value =>{
+              console.log(value.items)
+              setVData(value.items)
+            })
+          }, []);
+         
 
   const renderVideoCard = ({ item }) => (
-    <Card style={styles.card}>
+    <TouchableOpacity style={styles.card}>
+      <Image style={{height:'70%', borderRadius:20}} source={{uri: item.snippet.thumbnails.high.url}}/>
       {/* You can use an actual video thumbnail image here */}
-      <Card.Cover source={{ uri: 'https://via.placeholder.com/300' }} />
+      <View style={{ marginTop:15, marginLeft:15, marginRight:15}}><Text style={{fontSize:20}}>{item.snippet.title}</Text></View>
+     <View style={{ margin:10}}>
+      <Text style={{fontSize:18, fontWeight:'bold'}}>{item.snippet.channelTitle}</Text>
+     </View>
+      {/* <Card.Cover source={{  uri: item.snippet.thumbnails.high.url }} />
       <Card.Content>
-        <Title>{item.name}</Title>
-        <Paragraph>{item.channel}</Paragraph>
-      </Card.Content>
-    </Card>
+        <Title>{item.snippet.title}</Title>
+        <Paragraph>{item.snippet.channelTitle}</Paragraph>
+      </Card.Content> */}
+    </TouchableOpacity>
   );
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={videoData}
+        data={vdata}
         renderItem={renderVideoCard}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.flatListContainer}
@@ -54,13 +71,18 @@ const VideoScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 20,
   },
-  flatListContainer: {
-    paddingBottom: 16,
-  },
+  // flatListContainer: {
+  //   paddingBottom: 16,
+  // },
   card: {
-    marginBottom: 16,
+     //backgroundColor:'red',
+     borderRadius:20,
+     height: 270,
+    // opacity: 0.5,
+     marginBottom:20,
+
   },
 });
 
