@@ -1,7 +1,9 @@
 // ProfileScreen.js
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-paper';
+import { UserContext } from '../context';
+
 
 const ProfileScreen = ({ navigation }) => {
   const user = {
@@ -10,6 +12,9 @@ const ProfileScreen = ({ navigation }) => {
     email: 'john.doe@example.com',
     profilePicture: 'https://placekitten.com/200/200', // Replace with your image URL
   };
+ 
+  const content = useContext(UserContext);
+  console.log(content);
 
   const handleNavigate = (screen) => {
     navigation.navigate(screen);

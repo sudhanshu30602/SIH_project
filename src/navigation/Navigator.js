@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/LoginScreen';
 import SingupScreen from '../screens/SingupScreen';
 import TabNavigator from './TabNavigator';
+import ChatScreen from '../screens/ChatScreen';
 
 const Stack = createStackNavigator();
 
@@ -13,8 +14,9 @@ function Navigator() {
     <NavigationContainer>
     <Stack.Navigator initialRouteName="LoginScreen">
       <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="ChatScreen" component={ChatScreen} options={{ headerShown: false }} />
       <Stack.Screen name="SingupScreen" component={SingupScreen}  options={{ headerShown: false }} />
-      <Stack.Screen  name="Home" component={TabNavigator}  options={{ headerShown: false }} />
+      {/* <Stack.Screen  name="Home" component={TabNavigator}  options={{ headerShown: false }} /> */}
     </Stack.Navigator>
   </NavigationContainer>
   );

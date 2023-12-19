@@ -1,7 +1,8 @@
-// ChatBotScreen.js
 import React, { useState, useCallback } from 'react';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
-import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome'; // You can use another icon set based on your preference
+
+import { View, TouchableOpacity, StyleSheet, Text, TextInput } from 'react-native';
 
 const ChatScreen = () => {
   const [messages, setMessages] = useState([]);
@@ -10,6 +11,7 @@ const ChatScreen = () => {
   const handleSend = useCallback(
     (newMessages = []) => {
       setMessages((prevMessages) => GiftedChat.append(prevMessages, newMessages));
+
       // Simulate a response from the chatbot after a short delay
       setTimeout(() => {
         setMessages((prevMessages) =>
@@ -26,6 +28,7 @@ const ChatScreen = () => {
           ])
         );
       }, 1000);
+
       setInputText('');
     },
     [messages]
@@ -56,17 +59,20 @@ const ChatScreen = () => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
+    <View style={styles.container}>
       <GiftedChat
         messages={messages}
         onSend={(newMessages) => handleSend(newMessages)}
         user={{ _id: 1 }}
         placeholder="Type your message..."
         renderBubble={renderBubble}
+        style ={{backgroundColor:'red'}}
         alwaysShowSend
+
         renderSend={({ text }) => (
           <TouchableOpacity onPress={() => handleSend([{ text, _id: 1, createdAt: new Date(), user: { _id: 1 } }])} style={styles.sendButton}>
-            <Text style={styles.sendButtonText}>Send</Text>
+             
+      <Icon name="arrow-right" size={20} color="#000" />
           </TouchableOpacity>
         )}
       />
@@ -86,6 +92,10 @@ const ChatScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -104,7 +114,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f8f8',
   },
   sendButton: {
-    backgroundColor: '#3498db',
+   backgroundColor: '#f8f8f8',
+   marginRight: 20,
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 20,
